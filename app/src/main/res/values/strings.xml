@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BLE_Device</string>
+    <string name="scaning">扫描设备</string>
+    <string name="scaning_device">扫描到的设备</string>
+    <string name="state">连接状态</string>
+    <string name="restart">初始设备</string>
+    <string name="no_data">暂时没有发现设备</string>
+</resources>

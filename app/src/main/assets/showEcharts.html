@@ -1,0 +1,125 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="./echarts.js"></script>
+    <script src="./esl.js"></script>
+    <script src="./config.js"></script>
+    <script src="./facePrint.js"></script>
+    <script src="./jquery-1.11.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+    <script>
+    <!--function showData(str) {-->
+    <!--$("#text").text(str);-->
+    <!--}-->
+    </script>
+</head>
+<body>
+<style>
+    #main {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<div id="text"></div>
+<div id="main"></div>
+
+
+<script>
+        $(function () {});
+            function randomData() {
+                return (Math.random()* Math.random()*30);
+            }
+
+            var chart = echarts.init(document.getElementById('main'), null, {
+
+            });
+
+            var xAxisData = [];
+            var data1 = [];
+            var count = 0;
+            //横坐标个数
+            for (; count <24; count++) {
+                xAxisData.push('' + count);
+                data1.push(randomData());
+                // data2.push(-randomData());
+            }
+
+            var itemStyle = {
+                normal: {
+                    borderColor: 'white',
+                    borderWidth: 1,
+                }
+            };
+
+            chart.setOption({
+                legend: {
+                    <!--data: ['line', 'line2']-->
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'line'
+                    }
+                },
+                // animation: false,
+                xAxis: {
+                    axisLabel: {
+                        interval: 0
+                    },
+                    data: xAxisData,
+                    boundaryGap: false
+                },
+                yAxis: {
+                    scale: true,
+                    splitLine: {
+                         show: false
+                    }
+                },
+                series: [{
+                    <!--name: 'line',-->
+                    type: 'line',
+                    stack: 'all',
+                    symbol: 'none',
+                    symbolSize: 10,
+                    data: data1,
+                    itemStyle: itemStyle
+                }]
+            });
+            chart.setOption({
+                xAxis: {
+                    data: xAxisData
+                },
+                series: [{
+                    <!--name: 'line',-->
+                    data: data1
+                }]
+            });
+              <!--for (var i = 0; i < 5; i++) {-->
+                    <!--xAxisData.shift();-->
+                    <!--xAxisData.push('时间' + count);-->
+                    <!--data1.shift();-->
+                    <!--data1.push(randomData());-->
+                    <!--count++;-->
+                <!--}-->
+
+            function showData(str) {
+                <!--alert(str.length);-->
+                <!--alert(str);-->
+                <!--alert(str[1]);-->
+                var datas = str.split("[")[1].split("]")[0].split(",");
+                chart.setOption({
+                    xAxis: {
+                        data: xAxisData
+                    },
+                    series: [{
+                        <!--name: 'line',-->
+                        data: datas,
+                    }]
+                });
+
+             }
+    </script>
+</body>
+</html>
